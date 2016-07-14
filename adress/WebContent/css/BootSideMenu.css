@@ -85,11 +85,23 @@
 }
 
 @media (min-width: 400px) {
+	 .sidebar {
+            width: 100px;
+      }
+      .sidebar.sidebar-left{
+            left:0px;
+            right:auto;
+      }
 
+      .sidebar.sidebar-right{
+            right:0px;
+            left:auto;
+      }
+  
 }
 @media (min-width: 528px) {
       .sidebar {
-            width: 300px;
+            width: 100px;
       }
       .sidebar.sidebar-left{
             left:0px;

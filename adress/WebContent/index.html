@@ -10,15 +10,15 @@
 	    margin-bottom: 5px;
 	  }
 	  a:hover{text-decoration: none;}
+.newcolor{ background:#A6E1EB}	  
 </style>
-<link href='./css/custom-theme/jquery-ui-1.8.16.custom.css'
-	rel='stylesheet'>
-<link href='./third-party/wijmo/jquery.wijmo-open.1.5.0.css'
-	rel='stylesheet'>
+<link href='./css/custom-theme/jquery-ui-1.8.16.custom.css' rel='stylesheet'>
+<link href='./third-party/wijmo/jquery.wijmo-open.1.5.0.css' rel='stylesheet'>
 <link href="bootstrap/bootstrap.css" rel="stylesheet">
 <link href="css/demo.css" rel="stylesheet">
 <link href="css/BootSideMenu.css" rel="stylesheet">
 <link href="sortable/sortable.css" rel="stylesheet">
+<link href="css/stick.css" rel="stylesheet">
 </head>
 <body>
 	  <div id="rightMess">
@@ -126,11 +126,23 @@
 				</div>
 			</div>
 			<div class="tab-pane fade" id="idi_content">
-				<p>定制内容</p>
+				<div style="border: 1px solid #ddd;width: 90%; height: 200px; float: left;margin: 10px;">定制内容显示</div>
+				<div style="border: 1px solid #ddd;width: 90%; height: 350px; float: left;margin: 10px;">
+					<div style="border: 1px solid #ddd;width: 40%; height: 200px; float: left;margin: 10px;" >
+					   <iframe src="http://www.sina.com.cn/" sandbox  style=" width: 100%; height: 200px;" id="myiframe"></iframe>
+					</div>
+				    <div style="border: 1px solid #ddd;width: 40%; height: 200px; float: left;margin: 10px;" id="myContent">
+				       
+				    </div>
+				</div>
 			</div>
 			
 			<div class="tab-pane fade" id="idi_node">
-				<p>便签内容</p>
+					
+				<ul class="demos">
+					<li id="testclick">+标签</li>
+				</ul>
+				<div id="content" class="content"></div> 
 			</div>
 		</div>
 	
@@ -156,9 +168,29 @@
 	<script src="js/BootSideMenu.js"></script>
 	<script src="sortable/Sortable.js"></script>
 	
+	<script src="stickynote/jquery.stickynote.js"></script>
+	<script src="stickynote/ui.core.js"></script>
+	<script src="stickynote/ui.draggable.js"></script>
+	
+	
 	<script type="text/javascript">
 		 $(document).ready(function(){
 		      $('#rightMess').BootSideMenu({side:"right", autoClose:true});
+		      
+		      $('#myiframe').mouseenter(function(event){
+		          event.stopPropagation();       
+		          /* 鼠标进入事件 */  
+		          $(this).addClass("newcolor");
+		           
+		      })  
+		      
+		      .mouseleave(function(event){  
+		         /* 鼠标离开事件 */                         
+		           event.stopPropagation();
+		          $(this).toggleClass("newcolor");
+		      });  
+		      
+		      
 		  });
 		
 		
@@ -209,6 +241,22 @@
 
 			setNoiseBackground(document.getElementById('multi'),50,50, 0.02);
 		}, false);
+		
+		$(function() {
+			$("#content").stickynote({
+				size 			 : 'large',
+				text			 : 'Don\'t forget to buy beans!',
+				containment		 : 'content',
+				event			 : 'dblclick'
+			});
+			
+			$("#testclick").stickynote({
+				size 			 : 'large',
+				containment		 : 'content'
+			});
+			
+		});
+		
 	</script>
 </body>
 </html>
